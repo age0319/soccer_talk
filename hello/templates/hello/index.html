@@ -10,11 +10,25 @@
     <h1>{{ title }}</h1>
     <p>{{ message|safe }}</p>
     <table>
-    <form action="{% url 'index' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_table }}
-        <tr><td></td><td><input type="submit" value="click"></td></tr>
-    </form>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>GENDER</th>
+            <th>MAIL</th>
+            <th>AGE</th>
+            <th>BIRTHDAY</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{% if item.gender == False %}male{% endif %}
+                {% if item.gender == True %}female{% endif %}</td>
+            <td>{{ item.mail }}</td>
+            <td>{{ item.age }}</td>
+            <td>{{ item.birthday}}</td>
+        <tr>
+        {% endfor %}
     </table>
 </body>
 </html>

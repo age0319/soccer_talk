@@ -1,6 +1,17 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from .forms import HelloForm
+from .models import Friend
+
+
+def index(request):
+    data = Friend.objects.all()
+    params = {
+        'title': 'Hello',
+        'massage': 'all friends',
+        'data': data,
+    }
+    return render(request, 'hello/index.html', params)
 
 
 class HelloView(TemplateView):
