@@ -5,13 +5,25 @@ from .models import Friend
 
 
 def index(request):
-    data = Friend.objects.all()
+
     params = {
         'title': 'Hello',
         'massage': 'all friends',
-        'data': data,
+        'form': HelloForm(),
+        'data': []
     }
+
+    if request.method == 'POST':
+        num = request.POST['id']
+        item = Friend.objects.get(id=num)
+        params['data'] = [item]
+        params['form'] = HelloForm()
+    else:
+        params['data'] = Friend.objects.all()
+
     return render(request, 'hello/index.html', params)
+
+
 
 
 class HelloView(TemplateView):
