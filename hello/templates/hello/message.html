@@ -20,12 +20,14 @@
     <table>
         <tr>
             <th>title</th>
+            <th>content</th>
             <th>name</th>
             <th>datetime</th>
         </tr>
         {% for item in data %}
             <tr>
                 <td>{{ item.title }}</td>
+                <td>{{ item.content }}</td>
                 <td>{{ item.friend.name }}</td>
                 <td>{{ item.pub_date }}</td>
             <tr>
