@@ -1,5 +1,5 @@
 from django import forms
-from .models import Friend
+from .models import Friend, Message
 
 
 class FriendForm(forms.ModelForm):
@@ -10,3 +10,10 @@ class FriendForm(forms.ModelForm):
 
 class FindForm(forms.Form):
     find = forms.CharField(label='Find', required=False)
+
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ['title', 'content', 'friend']
+

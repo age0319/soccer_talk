@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from .forms import FriendForm
-from .models import Friend
+from .models import Friend, Message
 from django.shortcuts import redirect
-from .forms import FindForm
+from .forms import FindForm, MessageForm
+from django.core.paginator import Paginator
 
 
 def index(request):
@@ -76,3 +77,21 @@ def find(request):
         'data': data
     }
     return render(request, 'hello/find.html', params)
+
+
+def message(request, page=1):
+
+    if request.method == 'POST':
+        obj = Message()
+        form = MessageForm(request.POST, instance=obj)
+        form.save()
+
+    data = Message.objects.all().reverse()
+    paginator = Paginator(data, 3)
+    params = {
+        'title': 'Message',
+        'form': MessageForm(),
+        'data': paginator.get_page(page),
+    }
+
+    return render(request, 'hello/message.html', params)
