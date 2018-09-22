@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import FriendForm
 from .models import Friend
 from django.shortcuts import redirect
+from .forms import FindForm
 
 
 def index(request):
@@ -54,3 +55,23 @@ def delete(request, num):
         'obj': friend
     }
     return render(request, 'hello/delete.html', params)
+
+
+def find(request):
+    if request.method == 'POST':
+        msg = 'search result'
+        form = FindForm(request.POST)
+        str = request.POST['find']
+        data = Friend.objects.filter(name=str)
+    else:
+        msg = 'what do you like to search?'
+        form = FindForm()
+        data = Friend.objects.all()
+
+    params = {
+        'title': 'Hello',
+        'msg': msg,
+        'form': form,
+        'data': data
+    }
+    return render(request, 'hello/find.html', params)
