@@ -190,11 +190,11 @@ def post(request):
     # POST送信の処理
     if request.method == 'POST':
         # 送信内容の取得
-        gr_name = request.POST['groups']
+        # gr_name = request.POST['groups']
         content = request.POST['content']
         # Groupの取得
-        group = Group.objects.filter(owner=request.user) \
-                .filter(title=gr_name).first()
+        # group = Group.objects.filter(owner=request.user).filter(title=gr_name).first()
+        group = None
         if group == None:
             (pub_user, group) = get_public()
         # Messageを作成し設定して保存
