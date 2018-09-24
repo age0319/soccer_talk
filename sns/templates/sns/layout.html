@@ -10,27 +10,28 @@
 <body>
     <div class="body_content">
     <div class="body_content_inner">
+        <!-- 上の二行 menu, login user -->
+        <img src={% static 'sns/j2.png' %} alt="j2" title="j2" class="IconBig">
         <table class="login_table" width="100%">
-        <tr><th width="150px">menu</th><td>
-        <table class="login_table_inner">
-        <tr>
-        <td><a href="{% url 'index' %}">トップ</a></td>
-        <td><a href="{% url 'post' %}">投稿</a></td>
-        <!--グループへのリンクを削除
-        <td><a href="{% url 'groups' %}">group</a></td>
-        ここまで-->
-        </tr>
+            <tr><th width="150px">menu</th><td>
+            <table class="login_table_inner">
+                <tr>
+                <td><a href="{% url 'index' %}">トップ</a></td>
+                <td><a href="{% url 'post' %}">投稿</a></td>
+                {#<td><a href="{% url 'groups' %}">group</a></td>#}
+                </tr>
+            </table>
+            </td></tr>
+            <tr><th width="150px">login user:</th><td>"{{login_user}}"</td></tr>
         </table>
-        </td></tr>
-        <tr><th width="150px">login user:</th><td>"{{login_user}}"</td></tr>
-        </table>
+
         <div class="header">{% block header %}{% endblock %}</div>
         <div class="content">{% block content %}{% endblock %}</div>
         <div class="footer">
         <hr>
         <div>
-        <span style="float:left;font-weight:bold;"><a href="/admin/logout?next=/sns/">[ logout ]</a></span>
-        <span style="float:right">copyright 2018 ymgsapo.</span>
+            <span style="float:left;font-weight:bold;"><a href="/admin/logout?next=/sns/">[ logout ]</a></span>
+            <span style="float:right">copyright 2018 ymgsapo.</span>
         </div>
         </div>
     </div>

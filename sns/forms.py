@@ -70,6 +70,7 @@ class PostForm(forms.Form):
     def __init__(self, user, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
 
+        #グループフィールドを削除
         # public = User.objects.filter(username='public').first()
         # self.fields['groups'] = forms.ChoiceField(
         #     choices=[('-','-')] + [(item.title, item.title) \

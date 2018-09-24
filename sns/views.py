@@ -194,9 +194,9 @@ def post(request):
         content = request.POST['content']
         # Groupの取得
         # group = Group.objects.filter(owner=request.user).filter(title=gr_name).first()
-        group = None
-        if group == None:
-            (pub_user, group) = get_public()
+
+        # if group == None:
+        (pub_user, group) = get_public()
         # Messageを作成し設定して保存
         msg = Message()
         msg.owner = request.user
@@ -227,13 +227,15 @@ def share(request, share_id):
     # POST送信時の処理
     if request.method == 'POST':
         # 送信内容を取得
-        gr_name = request.POST['groups']
+        # gr_name = request.POST['groups']
         content = request.POST['content']
         # Groupの取得
-        group = Group.objects.filter(owner=request.user) \
-                .filter(title=gr_name).first()
-        if group == None:
-            (pub_user, group) = get_public()
+        # group = Group.objects.filter(owner=request.user) \
+        #         .filter(title=gr_name).first()
+
+        # if group == None:
+        (pub_user, group) = get_public()
+
         # メッセージを作成し、設定をして保存
         msg = Message()
         msg.owner = request.user
