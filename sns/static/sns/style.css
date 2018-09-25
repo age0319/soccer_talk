@@ -97,7 +97,7 @@ table tr td {
 .message_owner {
     text-align:right;
     font-size:12pt;
-    font-weight:bold;
+    /*font-weight:bold;*/
     margin:30px 10px 0px 10px;
 }
 .message_public {
@@ -109,7 +109,7 @@ table tr td {
     float:left;
     font-weight:normal;
     font-size:12pt;
-    color:#f66;
+    color:black;
 }
 .share_content {
     border: solid 3px #ddf;

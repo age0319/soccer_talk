@@ -41,17 +41,22 @@
         ここまで -->
 
         <p class="message_content">{{item.content}}</p>
-        <p class="message_date"> ({{item.pub_date}})</p>
+{#        <p class="message_date"> ({{item.pub_date}})</p>#}
         {% if item.share_id > 0 %}
             <hr class="share_line">
             <p class="share_item_content">{{item.get_share}}</P>
         {% endif %}
         <p class="message_owner">
-            <span class="message_counter">share={{item.share_count}} good={{item.good_count}}</span>
-            "{{item.owner}}"
+            <span class="message_counter">
+                <a href="{% url 'share' item.id %}">
+                <button>シェア</button></a>={{item.share_count}}
+                <a href="{% url 'good' item.id %}">
+                <button>いいね!</button></a>={{item.good_count}}
+            </span>
+            "{{item.owner}}" ({{item.pub_date}})
 {#            (<a href="{% url 'add' %}?name={{item.owner}}">add friend</a>)#}
-            <a href="{% url 'share' item.id %}"><button>share</button></a>
-            <a href="{% url 'good' item.id %}"><button>good!</button></a>
+{#            <a href="{% url 'share' item.id %}"><button>share</button></a>#}
+{#            <a href="{% url 'good' item.id %}"><button>good!</button></a>#}
         </p>
     {% endfor %}
 {% endblock %}
