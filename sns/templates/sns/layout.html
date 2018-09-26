@@ -10,13 +10,18 @@
 <body>
     <div class="body_content">
     <div class="body_content_inner">
-        <img src={% static 'sns/j2.png' %} alt="j2" title="j2" class="IconBig">
+{#        <img src={% static 'sns/j2.png' %} alt="j2" title="j2" class="IconBig">#}
         <table class="login_table" width="100%">
             <tr><th width="150px">menu</th><td>
             <table class="login_table_inner">
                 <tr>
                 <td><a href="{% url 'index' %}">トップ</a></td>
                 <td><a href="{% url 'post' %}">投稿</a></td>
+                {% if user.is_authenticated %}
+                    <td><a href="{% url 'logout' %}">ログアウト</a></td>
+                {% else %}
+                    <td><a href="{% url 'login' %}">ログイン</a></td>
+                {% endif %}
                 </tr>
             </table>
             </td></tr>
@@ -30,7 +35,10 @@
         <div class="footer">
         <hr>
         <div>
-            <span style="float:left;font-weight:bold;"><a href="/admin/logout?next=/sns/">[ logout ]</a></span>
+{#            <span style="float:left;font-weight:bold;"><a href="/admin/logout?next=/sns/">[ logout ]</a></span>#}
+            {% if user.is_authenticated %}
+                <span style="float:left;font-weight:bold;"><a href={% url 'logout' %}>[ logout ]</a></span>
+            {% endif %}
             <span style="float:right">copyright 2018 ymgsapo.</span>
         </div>
         </div>

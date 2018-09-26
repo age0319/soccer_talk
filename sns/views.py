@@ -12,7 +12,7 @@ from django.contrib.auth import login
 
 
 # indexのビュー関数
-# @login_required(login_url='/admin/login/')
+# @login_required(login_url='/sns/')
 def index(request):
 
     # POST送信時の処理
@@ -37,7 +37,7 @@ def index(request):
 
 
 # メッセージのポスト処理
-@login_required(login_url='/admin/login/')
+@login_required
 def post(request):
     # POST送信の処理
     if request.method == 'POST':
@@ -70,7 +70,7 @@ def post(request):
     return render(request, 'sns/post.html', params)
 
 # 投稿をシェアする
-@login_required(login_url='/admin/login/')
+@login_required
 def share(request, share_id):
     # シェアするMessageの取得
     share = Message.objects.get(id=share_id)
@@ -112,7 +112,7 @@ def share(request, share_id):
 
 
 # goodボタンの処理
-@login_required(login_url='/admin/login/')
+@login_required
 def good(request, good_id):
     # goodするMessageを取得
     good_msg = Message.objects.get(id=good_id)
@@ -148,6 +148,8 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'sns/signup.html', {'form': form})
 
+
+# 以下普通の関数
 
 def get_message(find):
 
