@@ -7,6 +7,9 @@ from .models import Message, Group, Good
 from .forms import SearchForm, PostForm
 from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
 
 # indexのビュー関数
 # @login_required(login_url='/admin/login/')
@@ -61,8 +64,8 @@ def post(request):
     
     # 共通処理
     params = {
-            'login_user':request.user,
-            'form':form,
+            'login_user': request.user,
+            'form': form,
         }
     return render(request, 'sns/post.html', params)
 
@@ -101,9 +104,9 @@ def share(request, share_id):
     # 共通処理
     form = PostForm(request.user)
     params = {
-            'login_user':request.user,
-            'form':form,
-            'share':share,
+            'login_user': request.user,
+            'form': form,
+            'share': share,
         }
     return render(request, 'sns/share.html', params)
 
@@ -132,6 +135,18 @@ def good(request, good_id):
     # メッセージを設定
     messages.success(request, 'メッセージにGoodしました！')
     return redirect(to='/sns')
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect(to='/sns')
+    else:
+        form = UserCreationForm()
+    return render(request, 'sns/signup.html', {'form': form})
 
 
 def get_message(find):
