@@ -149,6 +149,10 @@ def signup(request):
     return render(request, 'sns/signup.html', {'form': form})
 
 
+def test(request):
+    return render(request, 'sns/test.html')
+
+
 # 以下普通の関数
 
 def get_message(find):

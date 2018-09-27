@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Test page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/shuwa.css' %}">
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <h1>This is the test.</h1>
+
+    <div class="row">
+        <div class="col-lg-7 col-md-6 col-sm-4">
+            <div>col main</div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4">
+            <div>col sub</div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4">
+            <div>col sub</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">col 12</div>
+    </div>
+
+</div>
+</body>
+</html>

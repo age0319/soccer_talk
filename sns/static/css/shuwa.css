@@ -1,0 +1,12 @@
+div {
+    padding: 5px 10px;
+}
+
+.container .row div, .container-fluid .row div{
+    border: 1px solid lightgray;
+}
+
+.container .row div div, .container-fluid .row div div{
+    color: darkblue;
+    background-color: lightblue;
+}
