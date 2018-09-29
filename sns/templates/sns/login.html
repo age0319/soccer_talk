@@ -3,10 +3,20 @@
 {% block title %}Log in{% endblock %}
 
 {% block content %}
-    <h2>Log in</h2>
-    <form method="post" novalidate>
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit" class="btn btn-primary">Log in</button>
-    </form>
+    <div class="container-fluid">
+        <div class="row m-3">
+            <div class="card" style="width: 700px;">
+                <div class="card-header">
+                    <h2>Log in</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" novalidate>
+                          {% csrf_token %}
+                          {{ form.as_p }}
+                          <button type="submit" class="btn btn-primary">Log in</button>
+                    </form>
+                </div>
+                </div>
+        </div>
+    </div>
 {% endblock %}

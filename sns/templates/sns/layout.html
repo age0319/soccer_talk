@@ -8,45 +8,42 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}"/>
 </head>
 <body>
-    <div class="container-fluid">
 {#        <img src={% static 'sns/j2.png' %} alt="j2" title="j2" class="IconBig">#}
-        <div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div>
-                        <table>
-                            <tr><th>メニュー</th><td>
-                            <table>
-                                <tr>
-                                <td><a href="{% url 'index' %}">トップ</a></td>
-                                <td><a href="{% url 'post' %}">投稿</a></td>
-                                {% if user.is_authenticated %}
-                                    <td><a href="{% url 'logout' %}">ログアウト</a></td>
-                                {% else %}
-                                    <td><a href="{% url 'login' %}">ログイン</a></td>
-                                {% endif %}
-                                </tr>
-                            </table>
-                            </td></tr>
-                            {% if user.is_authenticated %}
-                                <tr><th width="150px">ユーザ名</th><td>"{{login_user}}"</td></tr>
-                            {% endif %}
-                        </table>
-                    </div>
-                </div>
+
+    <div class="container justify-content-between">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="h4 mb-4">navigation</h1>
             </div>
         </div>
-        <div class="header">{% block header %}{% endblock %}</div>
-        <div class="content">{% block content %}{% endblock %}</div>
-        <div class="footer">
-            <hr>
-            <div>
-    {#            <span style="float:left;font-weight:bold;"><a href="/admin/logout?next=/sns/">[ logout ]</a></span>#}
-                {% if user.is_authenticated %}
-                    <span style="float:left;font-weight:bold;"><a href={% url 'logout' %}>[ logout ]</a></span>
-                {% endif %}
-                <span style="float:right">copyright 2018 ymgsapo.</span>
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar fixed-top navbar-light bg-info">
+                    <a href="{% url 'index' %}" class="nav-item nav-link text-light">Top</a>
+                    <a href="{% url 'post' %}" class="nav-item nav-link text-light">投稿</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}" class="nav-item nav-link text-light">ログアウト</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="nav-item nav-link text-light">ログイン</a>
+                    {% endif %}
+                    <a href="{% url 'signup' %}" class="nav-item nav-link text-light">ユーザ登録</a>
+                    <form  class="form-inline" action="{% url 'index' %}" method="post">
+                        {% csrf_token %}
+                        <input class="form-control mr-2" type="text" placeholder="Find" name="search">
+                        <button class="btn btn-outline-light">検索</button>
+                    </form>
+                </nav>
             </div>
+        </div>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <div class="footer">
+        <hr>
+        <div>
+            <span style="float:right">copyright 2018 ymgsapo.</span>
         </div>
     </div>
 </body>
