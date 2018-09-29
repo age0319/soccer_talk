@@ -150,7 +150,7 @@ def signup(request):
 
 
 def test(request):
-    return render(request, 'sns/test.html')
+    return render(request, 'sns/test_form.html')
 
 
 # 以下普通の関数

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test form</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+</head>
+<body>
+    <div class="container">
+        <div class="col-sm-12">
+            <h1>GUI Sample</h1>
+        </div>
+
+        <div class="row">
+            <form method="post" action="#">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="mail"
+                    aria-describedby="email-tip" placeholder="your address">
+                    <small id="email-tip" class="form-text text-muted">
+                        please type your email address.</small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="pass"
+                           aria-describedby="pass-tip" placeholder="Password">
+                    <small id="pass-tip" class="form-text text-muted">please type your password.</small>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn" value="send" aria-describedby="btn-tip">
+                    <small id="btn-tip" class="form-text text-muted">please click here!</small>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -5,6 +5,7 @@ from django import forms
 class SearchForm(forms.Form):
     search = forms.CharField(max_length=100)
 
+
 # 投稿フォーム
 class PostForm(forms.Form):
     content = forms.CharField(max_length=500, widget=forms.Textarea)
