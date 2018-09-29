@@ -6,32 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Test page</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/shuwa.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/test_style.css' %}">
 
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
+{#    <script src="{% static 'js/bootstrap.min.js' %}"></script>#}
+{#    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>#}
+{#    <script src="{% static 'js/popper.min.js' %}"></script>#}
 </head>
 <body>
 <div class="container-fluid">
     <h1>This is the test.</h1>
 
-    <div class="row">
-        <div class="col-lg-7 col-md-6 col-sm-4">
-            <div>col main</div>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="w-100">
+                <p>lg-2 lg-2 lg-2 lg-2</p>
+            </div>
+            <div class="mr-lg-2">
+                <div>Main Content A</div>
+            </div>
+            <div class="mr-lg-2">
+                <div>Main Content B</div>
+            </div>
+            <div class="ml-lg-2">
+                <div>Sub Content A</div>
+            </div>
+            <div class="ml-lg-2">
+                <div>Sub Content B</div>
+            </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-4">
-            <div>col sub</div>
+
+        <div class="row">
+            <div class="w-100">
+                <p>auto lg-2 lg-2 auto</p>
+            </div>
+            <div class="mr-auto">
+                <div>Main Content A</div>
+            </div>
+            <div class="mr-lg-2">
+                <div>Main Content B</div>
+            </div>
+            <div class="ml-lg-2">
+                <div>Sub Content A</div>
+            </div>
+            <div class="ml-auto">
+                <div>Sub Content B</div>
+            </div>
         </div>
-        <div class="col-lg-2 col-md-3 col-sm-4">
-            <div>col sub</div>
+
+        <div class="row">
+            <div class="col-sm-12">col 12</div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-sm-12">col 12</div>
-    </div>
-
 </div>
 </body>
 </html>
