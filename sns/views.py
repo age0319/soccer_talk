@@ -4,15 +4,13 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 from .models import Message, Group, Good
-from .forms import SearchForm, PostForm
+from .forms import SearchForm, PostForm, UserCreateForm2
 from django.contrib.auth.decorators import login_required
 
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
 
 # indexのビュー関数
-# @login_required(login_url='/sns/')
 def index(request):
 
     # POST送信時の処理
@@ -41,22 +39,20 @@ def index(request):
 def post(request):
     # POST送信の処理
     if request.method == 'POST':
-        # 送信内容の取得
-        # gr_name = request.POST['groups']
+        # 投稿内容の取得
         content = request.POST['content']
-        # Groupの取得
-        # group = Group.objects.filter(owner=request.user).filter(title=gr_name).first()
-        # if group == None:
-        (pub_user, group) = get_public()
+
         # Messageを作成し設定して保存
         msg = Message()
         msg.owner = request.user
+        (pub_user, group) = get_public()
         msg.group = group
         msg.content = content
         msg.save()
+
         # メッセージを設定
         messages.success(request, '新しいメッセージを投稿しました！')
-        return redirect(to='/sns')
+        return redirect(to='/sns/index')
     
     # GETアクセス時の処理
     else:
@@ -69,6 +65,7 @@ def post(request):
         }
     return render(request, 'sns/post.html', params)
 
+
 # 投稿をシェアする
 @login_required
 def share(request, share_id):
@@ -78,13 +75,7 @@ def share(request, share_id):
     # POST送信時の処理
     if request.method == 'POST':
         # 送信内容を取得
-        # gr_name = request.POST['groups']
         content = request.POST['content']
-        # Groupの取得
-        # group = Group.objects.filter(owner=request.user) \
-        #         .filter(title=gr_name).first()
-
-        # if group == None:
         (pub_user, group) = get_public()
 
         # メッセージを作成し、設定をして保存
@@ -99,7 +90,7 @@ def share(request, share_id):
         share_msg.save()
         # メッセージを設定
         messages.success(request, 'メッセージをシェアしました！')
-        return redirect(to='/sns')
+        return redirect(to='/sns/index')
     
     # 共通処理
     form = PostForm(request.user)
@@ -122,7 +113,7 @@ def good(request, good_id):
     # ゼロより大きければ既にgood済み
     if is_good > 0:
         messages.success(request, '既にメッセージにはGoodしています。')
-        return redirect(to='/sns')
+        return redirect(to='/sns/index')
     
     # Messageのgood_countを１増やす
     good_msg.good_count += 1
@@ -134,18 +125,18 @@ def good(request, good_id):
     good.save()
     # メッセージを設定
     messages.success(request, 'メッセージにGoodしました！')
-    return redirect(to='/sns')
+    return redirect(to='/sns/index.html')
 
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserCreateForm2(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect(to='/sns')
+            return redirect(to='/sns/index')
     else:
-        form = UserCreationForm()
+        form = UserCreateForm2()
     return render(request, 'sns/signup.html', {'form': form})
 
 
@@ -167,8 +158,7 @@ def get_message(find):
 # publicなUserとGroupを取得する
 def get_public():
     public_user = User.objects.filter(username='public').first()
-    public_group = Group.objects.filter \
-            (owner=public_user).first()
-    return (public_user, public_group)
+    public_group = Group.objects.filter(owner=public_user).first()
+    return public_user, public_group
 
 
