@@ -3,12 +3,13 @@ from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from .models import Message, Group, Good
+from .models import Message, Group, Good, Feedmodel
 from .forms import SearchForm, PostForm, UserCreateForm2
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth import login
-
+import feedparser
+import json
 
 # indexのビュー関数
 def index(request):
@@ -141,10 +142,54 @@ def signup(request):
 
 
 def test(request):
-    return render(request, 'sns/test_form.html')
+    return render(request, 'sns/test.html')
+
+
+def scrape(request):
+
+    # 表示する記事の数
+    show_num = 5
+
+    do_scrape()
+
+    with open("news.json", 'r') as f:
+        data = json.load(f)
+
+    return render(request, 'sns/scrape.html', {"all_data": data[:show_num]})
 
 
 # 以下普通の関数
+
+
+def do_scrape():
+
+    # 取得する記事の数、最大で20個
+    entry_num = 20
+
+    url = 'https://news.google.com/news/rss/search/section/q/j2%e3%83%aa%e3%83%bc%e3%82%b0/j2%e3%83%aa%e3%83%bc%e3%82%b0?ned=jp&hl=ja&gl=JP'
+
+    d = feedparser.parse(url)
+    news = list()
+
+    for i, entry in enumerate(d.entries[:entry_num], 1):
+        p = entry.published_parsed
+        sortkey = "%04d%02d%02d%02d%02d%02d" % (p.tm_year, p.tm_mon, p.tm_mday, p.tm_hour, p.tm_min, p.tm_sec)
+
+        tmp = {
+            "no": i,
+            "title": entry.title,
+            "link": entry.link,
+            "published": entry.published,
+            "sortkey": sortkey
+        }
+
+        news.append(tmp)
+
+    news = sorted(news, key=lambda x: x['sortkey'], reverse=True)
+
+    with open('news.json', 'w') as f:
+        json.dump(news, f)
+
 
 def get_message(find):
 

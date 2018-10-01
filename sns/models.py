@@ -50,3 +50,8 @@ class Good(models.Model):
         return 'good for "' + str(self.message) + '" (by ' + \
                 str(self.owner) + ')'
 
+
+class Feedmodel(models.Model):
+    title_name = models.CharField(max_length=140)
+    url_link = models.CharField(max_length=140)
+    package_img = models.TextField(null=True)
