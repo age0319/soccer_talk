@@ -8,14 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}"/>
 </head>
 <body>
-{#        <img src={% static 'sns/j2.png' %} alt="j2" title="j2" class="IconBig">#}
-
     <div class="container justify-content-between">
-        <div class="row">
-            <div class="col-sm-12">
-                <h1 class="h4 mb-4">navigation</h1>
-            </div>
-        </div>
         <div class="row">
             <div class="col-12">
                 <nav class="navbar fixed-top navbar-light bg-info">
@@ -27,6 +20,7 @@
                         <a href="{% url 'login' %}" class="nav-item nav-link text-light">ログイン</a>
                     {% endif %}
                     <a href="{% url 'signup' %}" class="nav-item nav-link text-light">ユーザ登録</a>
+                    <a href="{% url 'news' %}" class="nav-item nav-link text-light">ニュース</a>
                     <form  class="form-inline" action="{% url 'index' %}" method="post">
                         {% csrf_token %}
                         <input class="form-control mr-2" type="text" placeholder="Find" name="search">

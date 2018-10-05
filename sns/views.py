@@ -3,13 +3,14 @@ from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from .models import Message, Group, Good, Feedmodel
+from .models import Message, Group, Good
 from .forms import SearchForm, PostForm, UserCreateForm2
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth import login
 import feedparser
 import json
+
 
 # indexのビュー関数
 def index(request):
@@ -166,7 +167,8 @@ def do_scrape():
     # 取得する記事の数、最大で20個
     entry_num = 20
 
-    url = 'https://news.google.com/news/rss/search/section/q/j2%e3%83%aa%e3%83%bc%e3%82%b0/j2%e3%83%aa%e3%83%bc%e3%82%b0?ned=jp&hl=ja&gl=JP'
+    url = "https://news.google.com/news/rss/search/section/q/j2%e3%83%aa%e3%83%bc%e3%82%b0/j2%e3%83%aa%e3%83%bc%e3" \
+          "%82%b0?ned=jp&hl=ja&gl=JP"
 
     d = feedparser.parse(url)
     news = list()
