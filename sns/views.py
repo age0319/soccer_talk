@@ -145,17 +145,17 @@ def test(request):
     return render(request, 'sns/test.html')
 
 
-def scrape(request):
+def news(request):
 
     # 表示する記事の数
-    show_num = 5
+    show_num = 10
 
     do_scrape()
 
     with open("news.json", 'r') as f:
         data = json.load(f)
 
-    return render(request, 'sns/scrape.html', {"all_data": data[:show_num]})
+    return render(request, 'sns/news.html', {"all_data": data[:show_num]})
 
 
 # 以下普通の関数
