@@ -12,9 +12,11 @@
                         <h2>ニュース</h2>
                     </div>
                     <div class="card-body">
-                        {% for i in all_data %}
+                        {% for entry in entries %}
+                            <hr class="msg_line">
+                            投稿日時 : [{{ entry.published }}]
                             <br>
-                            <a href="{{ i.link }}">{{ i.title }}</a>
+                            <a href="{{ entry.link }}">{{ entry.title }}</a>
                         {% endfor %}
                     </div>
                 </div>

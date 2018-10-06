@@ -151,12 +151,17 @@ def news(request):
     # 表示する記事の数
     show_num = 10
 
+    # 記事データを取得する
     do_scrape()
 
     with open("news.json", 'r') as f:
-        data = json.load(f)
+        entries = json.load(f)
 
-    return render(request, 'sns/news.html', {"all_data": data[:show_num]})
+    params = {
+        "entries": entries[:show_num]
+    }
+
+    return render(request, 'sns/news.html', params)
 
 
 # 以下普通の関数
