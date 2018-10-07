@@ -10,29 +10,38 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 import feedparser
 import json
+from django.core.paginator import Paginator
 
 
 # indexのビュー関数
-def index(request):
+def index(request, num=1):
 
     # POST送信時の処理
     if request.method == 'POST':
         # フォームの用意
         searchform = SearchForm(request.POST)
-        messages = get_message(request.POST['search'])
+        find = request.POST['search']
+        msgs = Message.objects.filter(content__contains=find)
+        params = {
+            'login_user': request.user,
+            'contents': msgs,
+            'search_form': searchform,
+        }
 
     # GETアクセス時の処理
     else:
         # フォームの用意
         searchform = SearchForm()
-        messages = get_message(None)
+        msgs = Message.objects.all()
+        page = Paginator(msgs, 10)
 
-    # 共通処理
-    params = {
-            'login_user': request.user,
-            'contents': messages,
-            'search_form': searchform,
-        }
+        # 共通処理
+        params = {
+                'login_user': request.user,
+                'contents': page.get_page(num),
+                'search_form': searchform,
+            }
+
     return render(request, 'sns/index.html', params)
 
 

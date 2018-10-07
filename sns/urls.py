@@ -4,6 +4,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('index', views.index, name='index'),
+    path('index/<int:num>', views.index, name='index'),
     path('post', views.post, name='post'),
     path('share/<int:share_id>', views.share, name='share'),
     path('good/<int:good_id>', views.good, name='good'),
