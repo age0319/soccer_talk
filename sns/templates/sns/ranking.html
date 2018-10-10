@@ -1,0 +1,21 @@
+{% extends 'sns/layout.html'%}
+
+
+{% block title %}ランキング{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row m-3">
+                <div class="card" style="width: 700px;">
+                    <div class="card-header">
+                        <h2>ランキング</h2>
+                    </div>
+                    <div class="card-body">
+                        {{ table }}
+                    </div>
+                </div>
+        </div>
+    </div>
+
+{% endblock %}

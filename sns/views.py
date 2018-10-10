@@ -173,6 +173,10 @@ def news(request):
     return render(request, 'sns/news.html', params)
 
 
+def ranking(request):
+    pass
+
+
 # 以下普通の関数
 
 
