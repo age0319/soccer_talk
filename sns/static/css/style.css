@@ -3,15 +3,6 @@ div{
     padding: 5px 10px;
 }
 
-/*.container .row div, .container-fluid .row div {*/
-    /*border: 1px solid lightgray;*/
-/*}*/
-
-/*.container .row div div, .container-fluid .row div div{*/
-    /*color: darkblue;*/
-    /*background-color: lightblue;*/
-/*}*/
-
 .IconBig{
     width: auto;
     max-height: 150px;
@@ -20,23 +11,6 @@ div{
     margin-right: auto;
 }
 
-/*メニュー*/
-table {
-    margin:10px;
-    font-size:14pt;
-}
-table tr th {
-    background-color:green;
-    color:white;
-    padding:2px 10px;
-    border-size:2px;
-}
-table tr td {
-    background-color:lightgreen;
-    color:#666;
-    padding:2px 10px;
-    border-size:2px;
-}
 
 .messages {
     border: solid 3px #ccf;
@@ -63,3 +37,54 @@ table tr td {
     margin-bottom:100px;
 }
 
+
+/*ランキング用*/
+
+.mystyle {
+    font-size: 11pt;
+    font-family: Arial;
+    border-collapse: collapse;
+    border: 1px solid silver;
+
+}
+
+.mystyle td, th {
+    padding: 5px;
+}
+
+.mystyle tr:nth-child(1) {
+    background: lightgreen;
+}
+
+.mystyle tr:nth-child(2) {
+    background: lightgreen;
+}
+
+.mystyle tr:nth-child(3) {
+    background: lightblue;
+}
+
+.mystyle tr:nth-child(4) {
+    background: lightblue;
+}
+
+.mystyle tr:nth-child(5) {
+    background: lightblue;
+}
+
+.mystyle tr:nth-child(6) {
+    background: lightblue;
+}
+
+.mystyle tr:nth-child(21) {
+    background: lightcoral;
+}
+
+.mystyle tr:nth-child(22) {
+    background: lightcoral;
+}
+
+.mystyle tr:hover {
+    background: silver;
+    cursor: pointer;
+}

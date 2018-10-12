@@ -21,6 +21,7 @@
                     {% endif %}
                     <a href="{% url 'signup' %}" class="nav-item nav-link text-light">ユーザ登録</a>
                     <a href="{% url 'news' %}" class="nav-item nav-link text-light">ニュース</a>
+                    <a href="{% url 'ranking' %}" class="nav-item nav-link text-light">順位表</a>
                     <form  class="form-inline" action="{% url 'index' %}" method="post">
                         {% csrf_token %}
                         <input class="form-control mr-2" type="text" placeholder="Find" name="search">
