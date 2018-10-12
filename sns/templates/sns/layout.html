@@ -8,29 +8,93 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}"/>
 </head>
 <body>
-    <div class="container justify-content-between">
-        <div class="row">
-            <div class="col-12">
-                <nav class="navbar fixed-top navbar-light bg-info">
-                    <a href="{% url 'index' %}" class="nav-item nav-link text-light">Top</a>
-                    <a href="{% url 'post' %}" class="nav-item nav-link text-light">投稿</a>
+    <!-- ヘッダー -->
+    <header class="py-4">
+        <div class="container text-center">
+            <h1><a href={% url 'index' %}><img src="{% static 'img/soccer_talk.png' %}" alt="Soccer Talk"></a></h1>
+        </div>
+    </header>
+    <!-- ヘッダー -->
+    <!-- ナビゲーションバー -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+        <!-- サブコンポーネント -->
+        <div class="container">
+            <!-- ブランド -->
+            <a class="navbar-brand" href={% url 'index' %}>Soccer Talk</a>
+            <!-- 切り替えボタン -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content"
+                    aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- ナビゲーション -->
+            <div class="collapse navbar-collapse" id="navbar-content">
+                <!-- ナビゲーションメニュー -->
+                <ul class="navbar-nav mr-auto">
+                    <li>
+                        <a class="nav-link" href={% url 'index' %}>Top <span class="sr-only">(current)</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'post' %}" class="nav-link">投稿</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'signup' %}" class="nav-link">ユーザ登録</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'news' %}" class="nav-link">ニュース</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'ranking' %}" class="nav-link">ランキング</a>
+                    </li>
+
                     {% if user.is_authenticated %}
-                        <a href="{% url 'logout' %}" class="nav-item nav-link text-light">ログアウト</a>
+                        <!-- ドロップダウンメニュー -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ user.get_username }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'logout' %}">ログアウト</a>
+                            </div>
+                        </li>
                     {% else %}
-                        <a href="{% url 'login' %}" class="nav-item nav-link text-light">ログイン</a>
+                        <li class="nav-item">
+                            <a href="{% url 'login' %}" class="nav-link">ログイン</a>
+                        </li>
                     {% endif %}
-                    <a href="{% url 'signup' %}" class="nav-item nav-link text-light">ユーザ登録</a>
-                    <a href="{% url 'news' %}" class="nav-item nav-link text-light">ニュース</a>
-                    <a href="{% url 'ranking' %}" class="nav-item nav-link text-light">順位表</a>
-                    <form  class="form-inline" action="{% url 'index' %}" method="post">
-                        {% csrf_token %}
-                        <input class="form-control mr-2" type="text" placeholder="Find" name="search">
-                        <button class="btn btn-outline-light">検索</button>
-                    </form>
-                </nav>
+                </ul>
+
+
             </div>
         </div>
-    </div>
+        <!-- サブコンポーネント -->
+    </nav>
+    <!-- ナビゲーションバー -->
+
+{#    <div class="container justify-content-between">#}
+{#        <div class="row">#}
+{#            <div class="col-12">#}
+{#                <nav class="navbar fixed-top navbar-light bg-info">#}
+{#                    <a href="{% url 'index' %}" class="nav-item nav-link text-light">Top</a>#}
+{#                    <a href="{% url 'post' %}" class="nav-item nav-link text-light">投稿</a>#}
+{#                    {% if user.is_authenticated %}#}
+{#                        <a href="{% url 'logout' %}" class="nav-item nav-link text-light">ログアウト</a>#}
+{#                    {% else %}#}
+{#                        <a href="{% url 'login' %}" class="nav-item nav-link text-light">ログイン</a>#}
+{#                    {% endif %}#}
+{#                    <a href="{% url 'signup' %}" class="nav-item nav-link text-light">ユーザ登録</a>#}
+{#                    <a href="{% url 'news' %}" class="nav-item nav-link text-light">ニュース</a>#}
+{#                    <a href="{% url 'ranking' %}" class="nav-item nav-link text-light">順位表</a>#}
+{#                    <form  class="form-inline" action="{% url 'index' %}" method="post">#}
+{#                        {% csrf_token %}#}
+{#                        <input class="form-control mr-2" type="text" placeholder="Find" name="search">#}
+{#                        <button class="btn btn-outline-light">検索</button>#}
+{#                    </form>#}
+{#                </nav>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 
     {% block content %}
     {% endblock %}
@@ -41,5 +105,7 @@
             <span style="float:right">copyright 2018 ymgsapo.</span>
         </div>
     </div>
+    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
