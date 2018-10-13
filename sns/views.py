@@ -23,19 +23,19 @@ def board(request, num=1):
     # POST送信時の処理
     if request.method == 'POST':
         # フォームの用意
-        searchform = SearchForm(request.POST)
+        search_form = SearchForm(request.POST)
         find = request.POST['search']
         msgs = Message.objects.filter(content__contains=find)
         params = {
             'login_user': request.user,
             'contents': msgs,
-            'search_form': searchform,
+            'search_form': search_form,
         }
 
     # GETアクセス時の処理
     else:
         # フォームの用意
-        searchform = SearchForm()
+        search_form = SearchForm()
         msgs = Message.objects.all()
         page = Paginator(msgs, 10)
 
@@ -43,7 +43,7 @@ def board(request, num=1):
         params = {
                 'login_user': request.user,
                 'contents': page.get_page(num),
-                'search_form': searchform,
+                'search_form': search_form,
             }
 
     return render(request, 'sns/board.html', params)
@@ -178,7 +178,7 @@ def ranking(request):
     pd.set_option('colheader_justify', 'center')
 
     params = {
-        "table": df.to_html(classes='mystyle', index=False)
+        "table": df.to_html(classes='rank_table', index=False)
     }
 
     return render(request, 'sns/ranking.html', params)

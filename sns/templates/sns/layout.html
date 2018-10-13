@@ -76,16 +76,41 @@
     </nav>
     <!-- ナビゲーションバー -->
 
-
     {% block content %}
     {% endblock %}
 
-    <div class="footer">
-        <hr>
-        <div>
-            <span style="float:right">copyright 2018 ymgsapo.</span>
-        </div>
-    </div>
+    <!-- フッター -->
+    <footer class="py-4 bg-dark text-light">
+      <div class="container text-center">
+        <!-- ナビゲーション -->
+          <ul class="nav justify-content-center mb-3">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Top</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Coupon</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Information</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+        <!-- /ナビゲーション -->
+        <p><small>Copyright &copy;2018 Soccer Talk, All Rights Reserved.</small></p>
+      </div>
+    </footer>
+<!-- /フッター -->
     <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>

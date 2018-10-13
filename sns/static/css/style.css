@@ -25,9 +25,8 @@
 }
 
 
-/*ランキング*/
-
-.mystyle {
+/*ランキングテーブル*/
+.rank_table {
     font-size: 11pt;
     font-family: Arial;
     border-collapse: collapse;
@@ -35,45 +34,44 @@
 
 }
 
-.mystyle td, th {
+.rank_table td, th {
     padding: 5px;
 }
 
-.mystyle tr:nth-child(1) {
+.rank_table tr:nth-child(1) {
     background: lightgreen;
 }
 
-.mystyle tr:nth-child(2) {
+.rank_table tr:nth-child(2) {
     background: lightgreen;
 }
 
-.mystyle tr:nth-child(3) {
+.rank_table tr:nth-child(3) {
     background: lightblue;
 }
 
-.mystyle tr:nth-child(4) {
+.rank_table tr:nth-child(4) {
     background: lightblue;
 }
 
-.mystyle tr:nth-child(5) {
+.rank_table tr:nth-child(5) {
     background: lightblue;
 }
 
-.mystyle tr:nth-child(6) {
+.rank_table tr:nth-child(6) {
     background: lightblue;
 }
 
-.mystyle tr:nth-child(21) {
+.rank_table tr:nth-child(21) {
     background: lightcoral;
 }
 
-.mystyle tr:nth-child(22) {
+.rank_table tr:nth-child(22) {
     background: lightcoral;
 }
 
-.mystyle tr:hover {
+.rank_table tr:hover {
     background: silver;
     cursor: pointer;
 }
-
-/*ランキング*/
+/*ランキングテーブル*/

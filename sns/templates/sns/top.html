@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Top
+    Soccer Talk(サカトク)
 {% endblock %}
 
 {% block content %}
@@ -70,23 +70,52 @@
             <!-- 上段 -->
             <div class="row mb-4">
               <div class="col-md-8 mb-3">
-                コンテンツ見出しと紹介文が入ります
+                  <h3 class="mb-3">Soccer Talkについて</h3>
+                  <p>Soccer Talk（サカトク）はJ2リーグが好きな人たちが集まり、最新ニュースを見たり、掲示板で意見を交換するためのサイト
+                      です。J2のランキングや最新のニュースをいち早く取り寄せることでリアルタイムな情報発信サイトを実現しています。掲示板
+                      では、他の人の意見をいいね！したりシェアすることで、より活発な意見交換が出来るようになっています。
+                  </p>
+                  <p>最高に楽しいJ2リーグのエキサイティングな瞬間をSoccer Talkと共にお楽しみ下さい。あなたの情報お待ちしています。</p>
               </div>
               <div class="col-md-4">
-                画像が入ります
+                <img src="{% static '/img/about01.jpg' %}" alt="" class="img-fluid">
               </div>
             </div>
             <!-- /上段 -->
             <!-- 下段 -->
             <div class="row">
               <div class="col-md-4">
-                カードが入ります
+                  <!-- カード01 -->
+                  <div class="card mb-3">
+                    <img src="{% static 'img/about01_thumb.png' %}" alt="" class="img-fluid">
+                    <!-- カードの本文エリア -->
+                    <div class="card-body d-flex justify-content-between">
+                        <h4 class="card-title">ランキング</h4>
+                        <a href="{% url 'ranking' %}" class="btn btn-secondary">詳しく見る</a>
+                    </div>
+                  </div>
               </div>
               <div class="col-md-4">
-                カードが入ります
+                  <!-- カード02 -->
+                  <div class="card mb-3">
+                    <img src="{% static 'img/about02_thumb.jpg' %}" alt="" class="img-fluid">
+                    <!-- カードの本文エリア -->
+                    <div class="card-body d-flex justify-content-between">
+                        <h4 class="card-title">掲示板</h4>
+                        <a href="{% url 'board' %}" class="btn btn-secondary">詳しく見る</a>
+                    </div>
+                  </div>
               </div>
               <div class="col-md-4">
-                カードが入ります
+                  <!-- カード03 -->
+                  <div class="card mb-3">
+                    <img src="{% static 'img/about03_thumb.png' %}" alt="" class="img-fluid">
+                    <!-- カードの本文エリア -->
+                    <div class="card-body d-flex justify-content-between">
+                        <h4 class="card-title">ニュース</h4>
+                        <a href="{% url 'news' %}" class="btn btn-secondary">詳しく見る</a>
+                    </div>
+                  </div>
               </div>
             </div>
             <!-- /下段 -->
