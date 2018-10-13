@@ -53,15 +53,15 @@
                     {% endfor %}
                 <div class="pagination">
                     {% if contents.has_previous %}
-                        <a href="{% url 'index' %}">&laquo;first </a>
-                        <a href="{% url 'index' %}/{{ contents.previous_page_number }}">&laquo;prev </a>
+                        <a href="{% url 'board' %}">&laquo;first </a>
+                        <a href="{% url 'board' %}/{{ contents.previous_page_number }}">&laquo;prev </a>
                     {% endif %}
                     <span class="current">
                         [{{ contents.number }}/{{ contents.paginator.num_pages }}]
                     </span>
                     {% if contents.has_next %}
-                        <a href="{% url 'index' %}/{{ contents.next_page_number }}"> next&raquo;</a>
-                        <a href="{% url 'index' %}/{{ contents.paginator.num_pages }}"> last&raquo;</a>
+                        <a href="{% url 'board' %}/{{ contents.next_page_number }}"> next&raquo;</a>
+                        <a href="{% url 'board' %}/{{ contents.paginator.num_pages }}"> last&raquo;</a>
                     {% endif %}
                 </div>
             </div>

@@ -1,23 +1,10 @@
 
-div{
-    padding: 5px 10px;
-}
-
-.IconBig{
-    width: auto;
-    max-height: 150px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
+/*メッセージ*/
 .messages {
     border: solid 3px #ccf;
     padding: 10px 50px;
 }
 
-/*メッセージ*/
 .msg_line {
    border: 2px solid grey;
 }
@@ -38,7 +25,7 @@ div{
 }
 
 
-/*ランキング用*/
+/*ランキング*/
 
 .mystyle {
     font-size: 11pt;
@@ -88,3 +75,5 @@ div{
     background: silver;
     cursor: pointer;
 }
+
+/*ランキング*/

@@ -66,3 +66,11 @@ class Scrape:
 
         with open(self.json_name, 'w') as f:
             json.dump(news, f)
+
+
+if __name__ == '__main__':
+
+    ins = Scrape(csv_name="ranking.csv", json_name="news.json")
+    ins.scrape_news()
+    ins.scrape_ranking()
+

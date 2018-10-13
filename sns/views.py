@@ -11,12 +11,14 @@ from django.contrib.auth import login
 import json
 from django.core.paginator import Paginator
 
-from .j2_scraping import Scrape
 import pandas as pd
 
 
-# indexのビュー関数
-def index(request, num=1):
+def top(request):
+    return render(request, 'sns/top.html')
+
+
+def board(request, num=1):
 
     # POST送信時の処理
     if request.method == 'POST':
@@ -44,7 +46,7 @@ def index(request, num=1):
                 'search_form': searchform,
             }
 
-    return render(request, 'sns/index.html', params)
+    return render(request, 'sns/board.html', params)
 
 
 # メッセージのポスト処理
@@ -65,7 +67,7 @@ def post(request):
 
         # メッセージを設定
         messages.success(request, '新しいメッセージを投稿しました！')
-        return redirect(to='/sns/index')
+        return redirect(to='/sns/board')
     
     # GETアクセス時の処理
     else:
@@ -103,7 +105,7 @@ def share(request, share_id):
         share_msg.save()
         # メッセージを設定
         messages.success(request, 'メッセージをシェアしました！')
-        return redirect(to='/sns/index')
+        return redirect(to='/sns/board')
     
     # 共通処理
     form = PostForm(request.user)
@@ -125,7 +127,7 @@ def good(request, good_id):
     # ゼロより大きければ既にgood済み
     if is_good > 0:
         messages.success(request, '既にメッセージにはGoodしています。')
-        return redirect(to='/sns/index')
+        return redirect(to='/sns/board')
     
     # Messageのgood_countを１増やす
     good_msg.good_count += 1
@@ -137,7 +139,7 @@ def good(request, good_id):
     good.save()
     # メッセージを設定
     messages.success(request, 'メッセージにGoodしました！')
-    return redirect(to='/sns/index.html')
+    return redirect(to='/sns/board')
 
 
 def signup(request):
@@ -152,15 +154,7 @@ def signup(request):
     return render(request, 'sns/signup.html', {'form': form})
 
 
-def test(request):
-    return render(request, 'sns/test.html')
-
-
 def news(request):
-
-    # 記事データを取得する
-    # ins = Scrape(json_name="news.json")
-    # ins.scrape_news()
 
     # 表示する記事の数
     show_num = 10
@@ -176,10 +170,6 @@ def news(request):
 
 
 def ranking(request):
-
-    # ランキングデータを取得する
-    # ins = Scrape(csv_name='ranking.csv')
-    # ins.scrape_ranking()
 
     df = pd.read_csv('ranking.csv')
     df = df.dropna(axis=1, how='any')
