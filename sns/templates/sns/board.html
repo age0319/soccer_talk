@@ -4,53 +4,52 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="row m-3">
+        <div class="row m-3 justify-content-center">
             <div class="card" style="width: 700px">
                 <div class="card-header">
                     <h2>掲示板</h2>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        {% if messages %}
-                            <ul class="messages">
-                                {% for message in messages %}
-                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                            {% endif %}
-                    </div>
+
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
 
                     {% for item in contents %}
-                        <hr class="msg_line">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div>
-                                    {{item.content}}
-                                </div>
-                            </div>
-                {#            シェアメッセージがあった場合のみ表示#}
-                            {% if item.share_id > 0 %}
-                                    <div class="col-sm-12">
-                                        <div>
-                                            <hr class="share_line">
-                                            <p class="share_item_content">{{item.get_share}}</p>
-                                        </div>
-                                    </div>
-                            {% endif %}
 
-                                <div class="col-sm-12">
-                                    <div>
-                                        <a href="{% url 'share' item.id %}" class="btn btn-success" role="button">
-                                            シェア = {{item.share_count}}
-                                        </a>
-                                        <a href="{% url 'good' item.id %}" class="btn btn-info" role="button">
-                                            いいね = {{item.good_count}}
-                                        </a>
-                                        "{{item.owner}}" ({{item.pub_date}})
-                                    </div>
-                                </div>
+                        <hr class="msg_line">
+
+
+                        <!-- 投稿メッセージ -->
+                        <div>
+                            {{item.content}}
                         </div>
+
+                        <!-- シェアメッセージがあった場合のみ表示 -->
+                        {% if item.share_id > 0 %}
+                            <div>
+                                <hr class="share_line">
+                                <p class="share_item_content">{{item.get_share}}</p>
+                            </div>
+                        {% endif %}
+
+                        <!-- シェア、イイネボタン -->
+                        <div>
+                            <a href="{% url 'share' item.id %}" class="btn btn-link btn-sm" role="button">
+                                シェア = {{item.share_count}}
+                            </a>
+                            <a href="{% url 'good' item.id %}" class="btn btn-link btn-sm" role="button">
+                                いいね = {{item.good_count}}
+                            </a>
+                            "{{item.owner}}" ({{item.pub_date}})
+                        </div>
+
                     {% endfor %}
+
                 <div class="pagination">
                     {% if contents.has_previous %}
                         <a href="{% url 'board' %}">&laquo;first </a>

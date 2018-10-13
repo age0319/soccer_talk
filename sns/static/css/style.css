@@ -1,4 +1,9 @@
 
+
+body {
+    background-image: url("../img/organic-tiles.png");
+}
+
 /*メッセージ*/
 .messages {
     border: solid 3px #ccf;
