@@ -21,30 +21,33 @@ def top(request):
 def board(request, num=1):
 
     # POST送信時の処理
-    if request.method == 'POST':
-        # フォームの用意
-        search_form = SearchForm(request.POST)
-        find = request.POST['search']
-        msgs = Message.objects.filter(content__contains=find)
-        params = {
+    # if request.method == 'POST':
+    #     # フォームの用意
+    #     search_form = SearchForm(request.POST)
+    #     find = request.POST['search']
+    #     msgs = Message.objects.filter(content__contains=find)
+    #     params = {
+    #         'login_user': request.user,
+    #         'contents': msgs,
+    #         'search_form': search_form,
+    #     }
+    #
+    # # GETアクセス時の処理
+    # else:
+
+    # フォームの用意
+    # search_form = SearchForm()
+    msgs = Message.objects.all()
+    page = Paginator(msgs, 10)
+
+    # 共通処理
+    params = {
             'login_user': request.user,
-            'contents': msgs,
-            'search_form': search_form,
+            'contents': page.get_page(num),
+            'page': page.page_range,
+            'page_active': num,          # intデータ
+            'page_last': page.num_pages  # intデータ
         }
-
-    # GETアクセス時の処理
-    else:
-        # フォームの用意
-        search_form = SearchForm()
-        msgs = Message.objects.all()
-        page = Paginator(msgs, 10)
-
-        # 共通処理
-        params = {
-                'login_user': request.user,
-                'contents': page.get_page(num),
-                'search_form': search_form,
-            }
 
     return render(request, 'sns/board.html', params)
 
