@@ -24,7 +24,7 @@ class SearchForm(forms.Form):
 
 # 投稿フォーム
 class PostForm(forms.Form):
-    content = forms.CharField(max_length=300, widget=forms.Textarea)
+    content = forms.CharField(max_length=300, widget=forms.Textarea, label="投稿内容")
     
     def __init__(self, user, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
