@@ -11,15 +11,15 @@ class UserCreateForm2(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(UserCreateForm2, self).__init__(*args, **kwargs)
 
-        for fieldname in ['username', 'password1', 'password2']:
-            self.fields[fieldname].help_text = None
+        for field_name in ['username', 'password1', 'password2']:
+            self.fields[field_name].help_text = None
 
         self.fields['password1'].help_text = "パスワードは4文字以上にして下さい。"
 
 
 # 検索フォーム
 class SearchForm(forms.Form):
-    search = forms.CharField(max_length=100)
+    search = forms.CharField(max_length=100, label="検索したい文字")
 
 
 # 投稿フォーム

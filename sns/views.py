@@ -2,15 +2,15 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 from .models import Message, Good
 from .forms import SearchForm, PostForm, UserCreateForm2
-from django.contrib.auth.decorators import login_required
 
-from django.contrib.auth import login
 import json
-from django.core.paginator import Paginator
-
 import pandas as pd
 
 
@@ -18,25 +18,34 @@ def top(request):
     return render(request, 'sns/top.html')
 
 
-def board(request, num=1):
+def find(request):
 
     # POST送信時の処理
-    # if request.method == 'POST':
-    #     # フォームの用意
-    #     search_form = SearchForm(request.POST)
-    #     find = request.POST['search']
-    #     msgs = Message.objects.filter(content__contains=find)
-    #     params = {
-    #         'login_user': request.user,
-    #         'contents': msgs,
-    #         'search_form': search_form,
-    #     }
-    #
-    # # GETアクセス時の処理
-    # else:
+    if request.method == 'POST':
 
-    # フォームの用意
-    # search_form = SearchForm()
+        search_form = SearchForm(request.POST)
+        keyword = request.POST['search']
+        # 投稿内容もしくはユーザ名を検索する
+        result = Message.objects.filter(Q(content__contains=keyword) | Q(owner__username__contains=keyword))
+        params = {
+            'login_user': request.user,
+            'contents': result,
+            'search_form': search_form,
+        }
+
+    # GETアクセス時の処理
+    else:
+
+        search_form = SearchForm()
+        params = {
+                "search_form": search_form
+            }
+
+    return render(request, 'sns/find.html', params)
+
+
+def board(request, num=1):
+
     msgs = Message.objects.all()
     page = Paginator(msgs, 10)
 
@@ -147,8 +156,3 @@ def ranking(request):
     }
 
     return render(request, 'sns/ranking.html', params)
-
-
-# 以下普通の関数
-
-
