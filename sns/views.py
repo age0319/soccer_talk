@@ -122,7 +122,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect(to='/sns/index')
+            return redirect(to='/sns/board')
     else:
         form = UserCreateForm2()
     return render(request, 'sns/signup.html', {'form': form})
