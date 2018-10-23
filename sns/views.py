@@ -13,6 +13,7 @@ from .forms import SearchForm, PostForm, UserCreateForm2
 import json
 import pandas as pd
 
+import os
 
 def top(request):
     return render(request, 'sns/top.html')
@@ -128,12 +129,16 @@ def signup(request):
     return render(request, 'sns/signup.html', {'form': form})
 
 
+UPLOAD_DIR = os.path.dirname(os.path.abspath(__file__)) + '/static/files/'
+
+
 def news(request):
 
     # 表示する記事の数
     show_num = 10
+    path = os.path.join(UPLOAD_DIR, "news.json")
 
-    with open("news.json", 'r') as f:
+    with open(path, 'r') as f:
         entries = json.load(f)
 
     params = {
@@ -145,7 +150,9 @@ def news(request):
 
 def ranking(request):
 
-    df = pd.read_csv('ranking.csv')
+    path = os.path.join(UPLOAD_DIR, "ranking.csv")
+
+    df = pd.read_csv(path)
     df = df.dropna(axis=1, how='any')
 
     # FOR TABLE <th> の文字列を真ん中にする

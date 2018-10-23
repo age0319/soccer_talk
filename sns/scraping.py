@@ -3,6 +3,9 @@ import feedparser
 import json
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import os
+
+UPLOAD_DIR = os.path.dirname(os.path.abspath(__file__)) + '/static/files/'
 
 
 class Scrape:
@@ -21,7 +24,8 @@ class Scrape:
         table = bs.findAll("table", {"class": "scoreTable01 J2table tablesorter"})[0]
         rows = table.findAll("tr")
 
-        csv_file = open(self.csv_name, 'wt', newline='', encoding='utf-8')
+        path = os.path.join(UPLOAD_DIR, self.csv_name)
+        csv_file = open(path, 'wt', newline='', encoding='utf-8')
         writer = csv.writer(csv_file)
 
         try:
@@ -64,7 +68,9 @@ class Scrape:
 
         news = sorted(news, key=lambda x: x['sortkey'], reverse=True)
 
-        with open(self.json_name, 'w') as f:
+        path = os.path.join(UPLOAD_DIR, self.json_name)
+
+        with open(path, 'w') as f:
             json.dump(news, f)
 
 
