@@ -1,4 +1,9 @@
 
+.header_new img {
+    max-width:535px; /* 画像の最大幅 */
+    margin: auto; /* 画像の左右の余白を同じ幅にする */
+    display: block; /* 画像の下の隙間をなくす */
+}
 
 body {
     background-image: url("../img/organic-tiles.png");
