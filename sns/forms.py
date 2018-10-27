@@ -11,7 +11,7 @@ class UserCreateForm2(UserCreationForm):
 
 # 検索フォーム
 class SearchForm(forms.Form):
-    keyword = forms.CharField(max_length=100, label="")
+    search_keyword = forms.CharField(max_length=100, label="find")
 
 
 # 投稿フォーム

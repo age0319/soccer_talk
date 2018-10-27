@@ -25,7 +25,7 @@ def find(request):
     if request.method == 'POST':
 
         form = SearchForm(request.POST)
-        keyword = request.POST['keyword']
+        keyword = request.POST['search_keyword']
         # 投稿内容もしくはユーザ名を検索する
         result = Message.objects.filter(Q(content__contains=keyword) | Q(owner__username__contains=keyword))
         params = {
