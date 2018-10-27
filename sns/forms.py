@@ -14,7 +14,10 @@ class UserCreateForm2(UserCreationForm):
 
 # 検索フォーム
 class SearchForm(forms.Form):
-    keyword = forms.CharField(max_length=100, label="検索したい文字")
+    keyword = forms.CharField(max_length=100, label="")
+
+    def __init__(self, *args, **kwargs):
+        super(SearchForm, self).__init__(*args, **kwargs)
 
 
 # 投稿フォーム
