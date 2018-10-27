@@ -24,22 +24,22 @@ def find(request):
     # POST送信時の処理
     if request.method == 'POST':
 
-        search_form = SearchForm(request.POST)
+        form = SearchForm(request.POST)
         keyword = request.POST['keyword']
         # 投稿内容もしくはユーザ名を検索する
         result = Message.objects.filter(Q(content__contains=keyword) | Q(owner__username__contains=keyword))
         params = {
             'login_user': request.user,
             'contents': result,
-            'search_form': search_form,
+            'form': form,
         }
 
     # GETアクセス時の処理
     else:
 
-        search_form = SearchForm()
+        form = SearchForm()
         params = {
-                "search_form": search_form
+                "form": form
             }
 
     return render(request, 'sns/find.html', params)

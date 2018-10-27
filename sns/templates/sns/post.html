@@ -12,9 +12,6 @@
         <!-- フォーム -->
         <div class="py-3">
             <div class="container">
-                <h3 class="mb-3">
-                    投稿フォーム
-                </h3>
                 <!-- フォーム -->
                 <form action="{% url 'post' %}" method="post">
                     <!-- 名前 -->
@@ -34,7 +31,7 @@
                         </label>
                         <div class="col-md-9">
                             {% csrf_token %}
-                            {{ form }}
+                            {{ form.content }}
                         </div>
                     </div>
                     <!-- /内容 -->
