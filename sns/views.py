@@ -36,11 +36,11 @@ def find(request):
 
     # GETアクセス時の処理
     else:
-
         form = SearchForm()
+
         params = {
-                "form": form
-            }
+            "form": form
+        }
 
     return render(request, 'sns/find.html', params)
 
