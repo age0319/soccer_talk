@@ -3,47 +3,49 @@
 {% block title %}掲示板{% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row m-3 justify-content-center">
-            <div class="card" style="width: 700px">
-                <div class="card-header">
-                    <h2>J2掲示板</h2>
-                    <p>メニューの投稿を選択するとメッセージの投稿ができます。</p>
-                </div>
-                <div class="card-body">
 
-                    {% if messages %}
-                        <ul class="messages">
-                            {% for message in messages %}
-                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
+        <div class="container">
+            <p></p>
+            <h2>J2掲示板</h2>
+            <p>Soccer Talk(サカトク)の掲示板です。</p>
+            <p><a href="{% url "post" %}">投稿する</a>   <a href="{% url "find" %}">検索する</a></p>
+        </div>
+        <!-- 投稿内容 -->
+        <div class="py-3">
+            <div class="container">
 
-                    {% for item in contents %}
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
 
-                        <hr class="msg_line">
-
-                        <!-- 投稿メッセージ -->
-                        <div>
-                            {{item.content}}
-                        </div>
-
-                        <!-- イイネボタンと投稿ユーザ名 -->
-                        <div>
-                            <a href="{% url 'good' item.id %}" class="btn btn-link btn-sm" role="button">
-                                いいね = {{item.good_count}}
-                            </a>
-                            "{{item.owner}}" ({{item.pub_date | date:"Y/n/d g:i A"}})
-                        </div>
-
-                    {% endfor %}
+                {% for item in contents %}
 
                     <hr class="msg_line">
 
-                    {% include "sns/pagination.html" %}
-                </div>
+                    <!-- 投稿メッセージ -->
+                    <div>
+                        {{item.content}}
+                    </div>
+
+                    <!-- イイネボタンと投稿ユーザ名 -->
+                    <div>
+                        <a href="{% url 'good' item.id %}" class="btn btn-link btn-sm" role="button">
+                            いいね = {{item.good_count}}
+                        </a>
+                        "{{item.owner}}" ({{item.pub_date | date:"Y/n/d g:i A"}})
+                    </div>
+
+                {% endfor %}
+
+                <hr class="msg_line">
+
+                {% include "sns/pagination.html" %}
+
+                <!-- /投稿内容 -->
             </div>
         </div>
-    </div>
 {% endblock %}

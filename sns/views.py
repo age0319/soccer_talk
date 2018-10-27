@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
@@ -26,7 +25,7 @@ def find(request):
     if request.method == 'POST':
 
         search_form = SearchForm(request.POST)
-        keyword = request.POST['search']
+        keyword = request.POST['keyword']
         # 投稿内容もしくはユーザ名を検索する
         result = Message.objects.filter(Q(content__contains=keyword) | Q(owner__username__contains=keyword))
         params = {
