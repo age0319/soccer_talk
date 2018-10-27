@@ -3,20 +3,76 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-      <div class="container-fluid">
-        <div class="row m-3 justify-content-center">
-            <div class="card" style="width: 700px;">
-                <div class="card-header">
-                     <h2>ユーザ登録</h2>
-                </div>
-                <div class="card-body">
-                    <form method="post" novalidate>
-                          {% csrf_token %}
-                          {{ form.as_p }}
-                          <button type="submit" class="btn btn-primary">ユーザ登録</button>
-                    </form>
-                </div>
+
+        <div class="container">
+            <p></p>
+            <h2>ユーザ登録</h2>
+            <p>Soccer Talk(サカトク)のユーザ登録をするにはこちらのフォームをご利用ください。</p>
+        </div>
+
+        <div class="py-3">
+            <div class="container">
+                <h3 class="mb-3">
+                    ユーザ登録フォーム
+                </h3>
+                <!-- フォーム -->
+                <form action="{% url 'signup' %}" method="post">
+
+                    <!-- ユーザ名 -->
+                    <div class="form-group row">
+                        <label for="name" class="col-md-3 col-form-label">
+                            ユーザ名 <span class="badge badge-warning">必須</span>
+                        </label>
+                        <div class="col-md-9">
+                            {% csrf_token %}
+                            {{ form.username }}
+                        </div>
+                    </div>
+                    <!-- /ユーザ名 -->
+
+                    <!-- パスワード -->
+                    <div class="form-group row">
+                        <label for="password" class="col-md-3 col-form-label">
+                            パスワード <span class="badge badge-warning">必須</span>
+                        </label>
+                        <div class="col-md-9">
+                            {% csrf_token %}
+                            {{ form.password1 }}
+                        </div>
+                    </div>
+                    <!-- /パスワード -->
+
+                    <!-- パスワード確認 -->
+                    <div class="form-group row">
+                        <label for="password2" class="col-md-3 col-form-label">
+                            パスワードの確認 <span class="badge badge-warning">必須</span>
+                        </label>
+                        <div class="col-md-9">
+                            {% csrf_token %}
+                            {{ form.password2 }}
+                        </div>
+                    </div>
+                    <!-- /パスワード確認 -->
+
+                    {# エラーメッセージを表示 #}
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                         {% endfor %}
+                    {% endif %}
+
+                    <!-- 確認ボタン -->
+                    <div class="form-group row justify-content-end">
+                        <div class="col-md-9">
+                            <button type="submit" class="btn btn-primary">登録する</button>
+                        </div>
+                    </div>
+
+                </form>
+                <!-- /フォーム -->
             </div>
         </div>
-      </div>
+
 {% endblock %}

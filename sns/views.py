@@ -15,6 +15,7 @@ import pandas as pd
 
 import os
 
+
 def top(request):
     return render(request, 'sns/top.html')
 

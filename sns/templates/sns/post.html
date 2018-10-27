@@ -3,28 +3,50 @@
 {% block title %}Post{% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row m-3 justify-content-center">
-            <div class="card" style="width: 700px;">
-                <div class="card-header">
-                    <h2>投稿</h2>
-                </div>
-                <div class="card-body">
-                        {% if messages %}
-                            <ul class="messages">
-                                {% for message in messages %}
-                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
 
-                        <form action="{% url 'post' %}" method="post">
+        <div class="container">
+            <p></p>
+            <h2>メッセージの投稿</h2>
+            <p>Soccer Talk(サカトク)の掲示板に投稿するにはこちらのフォームをご利用ください。</p>
+        </div>
+        <!-- フォーム -->
+        <div class="py-3">
+            <div class="container">
+                <h3 class="mb-3">
+                    投稿フォーム
+                </h3>
+                <!-- フォーム -->
+                <form action="{% url 'post' %}" method="post">
+                    <!-- 名前 -->
+                    <div class="form-group row">
+                        <label for="name" class="col-md-3 col-form-label">
+                            お名前
+                        </label>
+                        <div class="col-md-9">
+                            {{ user.get_username }}
+                        </div>
+                    </div>
+                    <!-- /名前 -->
+                    <!-- 内容 -->
+                    <div class="form-group row">
+                        <label for="message" class="col-md-3 col-form-label">
+                            投稿内容 <span class="badge badge-warning">必須</span>
+                        </label>
+                        <div class="col-md-9">
                             {% csrf_token %}
-                            {{form}}
-                            <button type="submit" class="btn btn-primary">投稿</button>
-                        </form>
-                </div>
+                            {{ form }}
+                        </div>
+                    </div>
+                    <!-- /内容 -->
+                    <!-- 確認ボタン -->
+                    <div class="form-group row justify-content-end">
+                        <div class="col-md-9">
+                            <button type="submit" class="btn btn-primary">投稿する</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- /フォーム -->
             </div>
         </div>
-    </div>
+
 {% endblock %}
