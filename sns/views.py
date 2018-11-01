@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 
 from .models import Message, Good
-from .forms import SearchForm, PostForm, UserCreateForm2
+from .forms import SearchForm, PostForm, SignUpForm
 
 import json
 import pandas as pd
@@ -25,7 +25,7 @@ def find(request):
     if request.method == 'POST':
 
         form = SearchForm(request.POST)
-        keyword = request.POST['search_keyword']
+        keyword = request.POST['keyword']
         # 投稿内容もしくはユーザ名を検索する
         result = Message.objects.filter(Q(content__contains=keyword) | Q(owner__username__contains=keyword))
         params = {
@@ -119,13 +119,13 @@ def good(request, good_id):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreateForm2(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect(to='/sns/board')
     else:
-        form = UserCreateForm2()
+        form = SignUpForm()
     return render(request, 'sns/signup.html', {'form': form})
 
 

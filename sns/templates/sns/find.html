@@ -12,44 +12,47 @@
 
         <div class="py-3">
             <div class="container">
+                <!-- フォーム -->
+                <form action="{% url 'find' %}" method="post">
 
-                    <form action="{% url 'find' %}" method="post">
-                        <!-- 名前 -->
-                        <div class="form-group row">
-                            <label for="name" class="col-md-3 col-form-label">
-                                検索キーワード <span class="badge badge-warning">必須</span>
-                            </label>
-                            <div class="col-md-9">
-                                {% csrf_token %}
-                                {{ form.search_keyword }}
-                            </div>
+                    <!-- キーワード -->
+                    <div class="form-group row">
+                        <label for="name" class="col-md-3 col-form-label">
+                            検索キーワード <span class="badge badge-warning">必須</span>
+                        </label>
+                        <div class="col-md-9">
+                            {% csrf_token %}
+                            {{ form.keyword }}
                         </div>
-                        <!-- 検索ボタン -->
-                        <div class="form-group row justify-content-end">
-                            <div class="col-md-9">
-                                <button type="submit" class="btn btn-primary">検索</button>
-                            </div>
+                    </div>
+
+                    <!-- 検索ボタン -->
+                    <div class="form-group row justify-content-end">
+                        <div class="col-md-9">
+                            <button type="submit" class="btn btn-primary">検索</button>
                         </div>
-                    </form>
+                    </div>
+                </form>
+                <!-- /フォーム -->
 
-                    {% for item in contents %}
+                {% for item in contents %}
 
-                        <hr class="msg_line">
+                    <hr class="msg_line">
 
-                        <!-- 投稿メッセージ -->
-                        <div>
-                            {{item.content}}
-                        </div>
+                    <!-- 投稿メッセージ -->
+                    <div>
+                        {{item.content}}
+                    </div>
 
-                        <!-- イイネボタンと投稿ユーザ名 -->
-                        <div>
-                            <a href="{% url 'good' item.id %}" class="btn btn-link btn-sm" role="button">
-                                いいね = {{item.good_count}}
-                            </a>
-                            "{{item.owner}}" ({{item.pub_date | date:"Y/n/d g:i A"}})
-                        </div>
+                    <!-- イイネボタンと投稿ユーザ名 -->
+                    <div>
+                        <a href="{% url 'good' item.id %}" class="btn btn-link btn-sm" role="button">
+                            いいね = {{item.good_count}}
+                        </a>
+                        "{{item.owner}}" ({{item.pub_date | date:"Y/n/d g:i A"}})
+                    </div>
 
-                    {% endfor %}
+                {% endfor %}
 
             </div>
         </div>
